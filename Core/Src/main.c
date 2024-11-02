@@ -106,7 +106,7 @@ int main(void)
   while (1)
   {
 	  //HAL_GPIO_TogglePin(R1_GPIO_Port, R1_Pin);
-	  HAL_GPIO_TogglePin(Y1_GPIO_Port, Y1_Pin);
+	//  HAL_GPIO_TogglePin(Y1_GPIO_Port, Y1_Pin);
 	  HAL_GPIO_TogglePin(G1_GPIO_Port, G1_Pin);
 	  HAL_GPIO_TogglePin(R2_GPIO_Port, R2_Pin);
 	  HAL_GPIO_TogglePin(Y2_GPIO_Port, Y2_Pin);
