@@ -24,6 +24,7 @@
 /* USER CODE BEGIN Includes */
 #include "timer.h"
 #include "button.h"
+#include"test.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -104,12 +105,13 @@ int main(void)
   setTimer(0, 100);
   while (1)
   {
-	  HAL_GPIO_TogglePin(R1_GPIO_Port, R1_Pin);
+	  //HAL_GPIO_TogglePin(R1_GPIO_Port, R1_Pin);
 	  HAL_GPIO_TogglePin(Y1_GPIO_Port, Y1_Pin);
 	  HAL_GPIO_TogglePin(G1_GPIO_Port, G1_Pin);
 	  HAL_GPIO_TogglePin(R2_GPIO_Port, R2_Pin);
 	  HAL_GPIO_TogglePin(Y2_GPIO_Port, Y2_Pin);
 	  HAL_GPIO_TogglePin(G2_GPIO_Port, G2_Pin);
+	  test();
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
