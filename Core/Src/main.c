@@ -102,16 +102,18 @@ int main(void)
   HAL_GPIO_WritePin(R2_GPIO_Port, R2_Pin, SET);
   HAL_GPIO_WritePin(Y2_GPIO_Port, Y2_Pin, SET);
   HAL_GPIO_WritePin(G2_GPIO_Port, G2_Pin, SET);
-  setTimer(0, 100);
+  //setTimer(0, 100);
   while (1)
   {
-	  //HAL_GPIO_TogglePin(R1_GPIO_Port, R1_Pin);
-	//  HAL_GPIO_TogglePin(Y1_GPIO_Port, Y1_Pin);
-	  HAL_GPIO_TogglePin(G1_GPIO_Port, G1_Pin);
-	  HAL_GPIO_TogglePin(R2_GPIO_Port, R2_Pin);
-	  HAL_GPIO_TogglePin(Y2_GPIO_Port, Y2_Pin);
-	  HAL_GPIO_TogglePin(G2_GPIO_Port, G2_Pin);
-	  test();
+	  HAL_GPIO_WritePin(EN0_GPIO_Port, EN0_Pin, SET);
+	  HAL_GPIO_WritePin(EN1_GPIO_Port, EN1_Pin, SET);
+	  HAL_GPIO_WritePin(EN2_GPIO_Port, EN2_Pin, SET);
+	  HAL_GPIO_WritePin(EN3_GPIO_Port, EN3_Pin, SET);
+
+	  HAL_GPIO_WritePin(A_GPIO_Port, A_Pin, RESET);
+	  HAL_GPIO_WritePin(B_GPIO_Port, B_Pin, RESET); //set
+	  HAL_GPIO_WritePin(C_GPIO_Port, C_Pin, RESET);  //set
+	  HAL_GPIO_WritePin(D_GPIO_Port, D_Pin,	SET);
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
@@ -213,27 +215,27 @@ static void MX_GPIO_Init(void)
   __HAL_RCC_GPIOB_CLK_ENABLE();
 
   /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(A_GPIO_Port, A_Pin, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(GPIOF, A_Pin|EN1_Pin, GPIO_PIN_RESET);
 
   /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(GPIOA, EN0_Pin|R1_Pin|R2_Pin|Y2_Pin
-                          |G2_Pin|EN1_Pin|EN3_Pin, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(GPIOA, EN0_Pin|R1_Pin|Y2_Pin|G2_Pin
+                          |R2_Pin|EN3_Pin, GPIO_PIN_RESET);
 
   /*Configure GPIO pin Output Level */
   HAL_GPIO_WritePin(GPIOB, D_Pin|EN2_Pin|G1_Pin|Y1_Pin
                           |C_Pin|B_Pin, GPIO_PIN_RESET);
 
-  /*Configure GPIO pin : A_Pin */
-  GPIO_InitStruct.Pin = A_Pin;
+  /*Configure GPIO pins : A_Pin EN1_Pin */
+  GPIO_InitStruct.Pin = A_Pin|EN1_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
-  HAL_GPIO_Init(A_GPIO_Port, &GPIO_InitStruct);
+  HAL_GPIO_Init(GPIOF, &GPIO_InitStruct);
 
-  /*Configure GPIO pins : EN0_Pin R1_Pin R2_Pin Y2_Pin
-                           G2_Pin EN1_Pin EN3_Pin */
-  GPIO_InitStruct.Pin = EN0_Pin|R1_Pin|R2_Pin|Y2_Pin
-                          |G2_Pin|EN1_Pin|EN3_Pin;
+  /*Configure GPIO pins : EN0_Pin R1_Pin Y2_Pin G2_Pin
+                           R2_Pin EN3_Pin */
+  GPIO_InitStruct.Pin = EN0_Pin|R1_Pin|Y2_Pin|G2_Pin
+                          |R2_Pin|EN3_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
@@ -253,6 +255,12 @@ static void MX_GPIO_Init(void)
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
+
+  /**/
+  HAL_I2CEx_EnableFastModePlus(SYSCFG_CFGR1_I2C_FMP_PB6);
+
+  /**/
+  HAL_I2CEx_EnableFastModePlus(SYSCFG_CFGR1_I2C_FMP_PB7);
 
 }
 

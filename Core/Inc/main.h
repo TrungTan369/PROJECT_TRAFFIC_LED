@@ -60,6 +60,8 @@ void Error_Handler(void);
 /* Private defines -----------------------------------------------------------*/
 #define A_Pin GPIO_PIN_0
 #define A_GPIO_Port GPIOF
+#define EN1_Pin GPIO_PIN_1
+#define EN1_GPIO_Port GPIOF
 #define EN0_Pin GPIO_PIN_0
 #define EN0_GPIO_Port GPIOA
 #define BUTTON3_Pin GPIO_PIN_1
@@ -68,18 +70,16 @@ void Error_Handler(void);
 #define R1_GPIO_Port GPIOA
 #define BUTTON2_Pin GPIO_PIN_3
 #define BUTTON2_GPIO_Port GPIOA
-#define R2_Pin GPIO_PIN_4
-#define R2_GPIO_Port GPIOA
-#define Y2_Pin GPIO_PIN_5
+#define Y2_Pin GPIO_PIN_4
 #define Y2_GPIO_Port GPIOA
-#define G2_Pin GPIO_PIN_6
+#define G2_Pin GPIO_PIN_5
 #define G2_GPIO_Port GPIOA
+#define R2_Pin GPIO_PIN_6
+#define R2_GPIO_Port GPIOA
 #define BUTTON1_Pin GPIO_PIN_7
 #define BUTTON1_GPIO_Port GPIOA
 #define D_Pin GPIO_PIN_1
 #define D_GPIO_Port GPIOB
-#define EN1_Pin GPIO_PIN_8
-#define EN1_GPIO_Port GPIOA
 #define EN3_Pin GPIO_PIN_11
 #define EN3_GPIO_Port GPIOA
 #define SWDIO_Pin GPIO_PIN_13
