@@ -44,7 +44,6 @@ void getKeyinput(){
 			key1_temp3 = key1_temp2;
 			if(key1_temp2 == PRESS_STATE){
 				buttonFlag1 = 1;
-				HAL_GPIO_TogglePin(R2_GPIO_Port, R2_Pin);
 			}
 		}
 		else{
@@ -63,7 +62,6 @@ void getKeyinput(){
 			if(key2_temp2 == PRESS_STATE){
 				buttonFlag2 = 1;
 				timePress = 200;
-				//HAL_GPIO_TogglePin(R2_GPIO_Port, R2_Pin);
 			}
 		}
 		else{
@@ -80,7 +78,6 @@ void getKeyinput(){
 			key3_temp3 = key3_temp2;
 			if(key3_temp2 == PRESS_STATE){
 				buttonFlag3 = 1;
-				//HAL_GPIO_TogglePin(R2_GPIO_Port, R2_Pin);
 			}
 		}
 		else{

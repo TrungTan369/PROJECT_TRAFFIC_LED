@@ -9,7 +9,7 @@
 #define INC_TIMER_H_
 
 #include "main.h"
-
+#include "button.h"
 extern int counter[4];   // blink dot 1hz
 extern int flag[4];
 

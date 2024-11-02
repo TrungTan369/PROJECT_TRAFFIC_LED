@@ -37,5 +37,10 @@ void timer_run(){
 	}
 }
 
+void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef * htim){
+	getKeyinput();
+	timer_run();
+}
+
 
 
