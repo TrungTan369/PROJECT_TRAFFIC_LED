@@ -101,11 +101,15 @@ int main(void)
   HAL_GPIO_WritePin(R2_GPIO_Port, R2_Pin, SET);
   HAL_GPIO_WritePin(Y2_GPIO_Port, Y2_Pin, SET);
   HAL_GPIO_WritePin(G2_GPIO_Port, G2_Pin, SET);
+  setTimer(0, 100);
   while (1)
   {
-	  if(isButtonPress1() == 1){
-		  HAL_GPIO_TogglePin(R1_GPIO_Port, R1_Pin);
-	  }
+	  HAL_GPIO_TogglePin(R1_GPIO_Port, R1_Pin);
+	  HAL_GPIO_TogglePin(Y1_GPIO_Port, Y1_Pin);
+	  HAL_GPIO_TogglePin(G1_GPIO_Port, G1_Pin);
+	  HAL_GPIO_TogglePin(R2_GPIO_Port, R2_Pin);
+	  HAL_GPIO_TogglePin(Y2_GPIO_Port, Y2_Pin);
+	  HAL_GPIO_TogglePin(G2_GPIO_Port, G2_Pin);
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
@@ -210,8 +214,8 @@ static void MX_GPIO_Init(void)
   HAL_GPIO_WritePin(A_GPIO_Port, A_Pin, GPIO_PIN_RESET);
 
   /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(GPIOA, EN0_Pin|G2_Pin|R1_Pin|Y2_Pin
-                          |R2_Pin|EN1_Pin|EN3_Pin, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(GPIOA, EN0_Pin|R1_Pin|R2_Pin|Y2_Pin
+                          |G2_Pin|EN1_Pin|EN3_Pin, GPIO_PIN_RESET);
 
   /*Configure GPIO pin Output Level */
   HAL_GPIO_WritePin(GPIOB, D_Pin|EN2_Pin|G1_Pin|Y1_Pin
@@ -224,10 +228,10 @@ static void MX_GPIO_Init(void)
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   HAL_GPIO_Init(A_GPIO_Port, &GPIO_InitStruct);
 
-  /*Configure GPIO pins : EN0_Pin G2_Pin R1_Pin Y2_Pin
-                           R2_Pin EN1_Pin EN3_Pin */
-  GPIO_InitStruct.Pin = EN0_Pin|G2_Pin|R1_Pin|Y2_Pin
-                          |R2_Pin|EN1_Pin|EN3_Pin;
+  /*Configure GPIO pins : EN0_Pin R1_Pin R2_Pin Y2_Pin
+                           G2_Pin EN1_Pin EN3_Pin */
+  GPIO_InitStruct.Pin = EN0_Pin|R1_Pin|R2_Pin|Y2_Pin
+                          |G2_Pin|EN1_Pin|EN3_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
@@ -251,7 +255,10 @@ static void MX_GPIO_Init(void)
 }
 
 /* USER CODE BEGIN 4 */
-
+void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef * htim){
+	getKeyinput();
+	timer_run();
+}
 /* USER CODE END 4 */
 
 /**
