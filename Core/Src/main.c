@@ -105,6 +105,7 @@ int main(void)
   //setTimer(0, 100);
   while (1)
   {
+
 	  HAL_GPIO_WritePin(EN0_GPIO_Port, EN0_Pin, SET);
 	  HAL_GPIO_WritePin(EN1_GPIO_Port, EN1_Pin, SET);
 	  HAL_GPIO_WritePin(EN2_GPIO_Port, EN2_Pin, SET);
@@ -114,6 +115,13 @@ int main(void)
 	  HAL_GPIO_WritePin(B_GPIO_Port, B_Pin, RESET); //set
 	  HAL_GPIO_WritePin(C_GPIO_Port, C_Pin, RESET);  //set
 	  HAL_GPIO_WritePin(D_GPIO_Port, D_Pin,	SET);
+
+	  HAL_GPIO_TogglePin(R1_GPIO_Port, R1_Pin);
+	  HAL_GPIO_TogglePin(Y1_GPIO_Port, Y1_Pin);
+	  HAL_GPIO_TogglePin(G1_GPIO_Port, G1_Pin);
+	  HAL_GPIO_TogglePin(R2_GPIO_Port, R2_Pin);
+	  HAL_GPIO_TogglePin(Y2_GPIO_Port, Y2_Pin);
+	  HAL_GPIO_TogglePin(G2_GPIO_Port, G2_Pin);
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
