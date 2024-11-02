@@ -110,6 +110,7 @@ int main(void)
 	  HAL_GPIO_TogglePin(R2_GPIO_Port, R2_Pin);
 	  HAL_GPIO_TogglePin(Y2_GPIO_Port, Y2_Pin);
 	  HAL_GPIO_TogglePin(G2_GPIO_Port, G2_Pin);
+
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */

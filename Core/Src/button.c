@@ -57,7 +57,6 @@ void getKeyinput(){
 
 	}
 	// ----PROCESS BUTTON 2-----------
-
 	if((key2_temp0 == key2_temp1) && (key2_temp1 == key2_temp2)){
 		if(key2_temp3 != key2_temp2){
 			key2_temp3 = key2_temp2;
