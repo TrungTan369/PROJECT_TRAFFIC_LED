@@ -40,7 +40,13 @@ void fsm_manual(){
 			}
 			break;
 		default:
+			return;
 			break;
 	}
-
+	if(isButtonPress(2) == 1){
+		single_LED_off();
+		status = set_green;
+		time_red_green = 0;
+		time_red_yellow = 0;
+	}
 }

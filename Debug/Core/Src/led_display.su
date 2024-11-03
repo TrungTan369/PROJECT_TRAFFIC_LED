@@ -2,3 +2,4 @@ led_display.c:11:6:Diable_Led	8	static
 led_display.c:17:6:Scan7SEG	8	static
 led_display.c:41:6:display7SEG	16	static
 led_display.c:107:6:updateClockBuffer	16	static
+led_display.c:113:6:single_LED_off	8	static

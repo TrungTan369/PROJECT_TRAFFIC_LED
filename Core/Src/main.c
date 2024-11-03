@@ -24,6 +24,7 @@
 /* USER CODE BEGIN Includes */
 #include "fsm_auto.h"
 #include "fsm_manual.h"
+#include "fsm_setting.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -99,6 +100,7 @@ int main(void)
   {
 	  fsm_auto_run();
 	  fsm_manual();
+	  fsm_setting();
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */

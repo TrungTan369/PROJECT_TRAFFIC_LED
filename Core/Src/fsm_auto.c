@@ -11,13 +11,7 @@ void fsm_auto_run(){
 	switch (status) {   // LINE 1
 		case auto_init:
 			// ------- ALL LED OFF -------------
-			HAL_GPIO_WritePin(R0_GPIO_Port, R0_Pin, SET);
-			HAL_GPIO_WritePin(Y0_GPIO_Port, Y0_Pin, SET);
-			HAL_GPIO_WritePin(G0_GPIO_Port, G0_Pin, SET);
-			HAL_GPIO_WritePin(R1_GPIO_Port, R1_Pin, SET);
-			HAL_GPIO_WritePin(Y1_GPIO_Port, Y1_Pin, SET);
-			HAL_GPIO_WritePin(G1_GPIO_Port, G1_Pin, SET);
-
+			single_LED_off();
 			status = auto_red_green;
 			count0 = (time_red_green + time_red_yellow)/1000;
 			count1 = time_red_green/1000;
@@ -33,7 +27,7 @@ void fsm_auto_run(){
 			if(timer_flag[0] == 1){
 				status = auto_red_yellow;
 				setTimer(0, time_red_yellow);
-				count0 = 5;
+				count0 = time_red_yellow/1000;;
 				count1 = time_red_yellow/1000;
 			}
 			//-----SWITCHING MANNUAL MODE -----------
@@ -63,7 +57,7 @@ void fsm_auto_run(){
 			if(timer_flag[0] == 1){
 				status = auto_yellow_red;
 				count0 = time_red_yellow/1000;
-				count1 = 5;
+				count1 = time_red_yellow/1000;;
 				setTimer(0, time_red_yellow);
 			}
 			//-----SWITCHING MANNUAL MODE -----------
@@ -87,14 +81,24 @@ void fsm_auto_run(){
 			return;
 			break;
 	}
+
 	updateClockBuffer(count0, count1);
 	if(timer_flag[2] == 1){
+
 		setTimer(2, 10);
 		Scan7SEG();
 	}
-
 	if(timer_flag[1] == 1){
 		setTimer(1, 1000);
 		count0 --; count1 --;
+	}
+	// -------SWITCHING SETTING MODE ------------
+	if(isButtonPress(2) == 1){
+		time_red_yellow = 0;
+		time_red_green = 0;
+		single_LED_off();
+		status = set_green;
+		setTimer(0, 100);
+		return;
 	}
 }

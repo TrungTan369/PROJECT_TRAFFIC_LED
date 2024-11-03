@@ -19,11 +19,12 @@
 #define auto_green_red 3
 #define auto_yellow_red 4
 
-////-----MANUAL MODE -------
+//-----MANUAL MODE -------
 #define manual_red_green 5
 #define manual_green_red 6
-
-
+//----SETTING MODE -------
+#define set_yellow 7
+#define set_green 8
 //---- TIME LED --------
 extern int time_red_green;
 extern int time_red_yellow;

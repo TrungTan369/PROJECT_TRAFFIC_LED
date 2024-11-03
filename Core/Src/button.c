@@ -24,7 +24,7 @@ void getKeyinput(){
 	// ----PROCESS BUTTON 2-----------
 
 	if((timer_flag[3] == 1) && (HAL_GPIO_ReadPin(BUTTON2_GPIO_Port, BUTTON2_Pin) == 0)){
-		//HAL_GPIO_TogglePin(Y0_GPIO_Port, Y0_Pin);
+		//HAL_GPIO_TogglePin(R0_GPIO_Port, R0_Pin);
 		//counter_debug++;
 		buttonFlag[1] = 1;
 		setTimer(3, 200);
@@ -32,7 +32,7 @@ void getKeyinput(){
 
 	// ----- PROCESS BUTTON 3 -----------
 	if((timer_flag[3] == 1) && (HAL_GPIO_ReadPin(BUTTON3_GPIO_Port, BUTTON3_Pin) == 0)){
-		//HAL_GPIO_TogglePin(G0_GPIO_Port, G0_Pin);
+		//HAL_GPIO_TogglePin(R0_GPIO_Port, R0_Pin);
 		//counter_debug++;
 		setTimer(3, 200);
 		buttonFlag[2] = 1;

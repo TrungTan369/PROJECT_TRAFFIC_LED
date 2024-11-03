@@ -110,4 +110,11 @@ void updateClockBuffer(int num1, int num2){
 	led_buffer[2] = num2 / 10;
 	led_buffer[3] = num2 % 10;
 }
-
+void single_LED_off(){
+	HAL_GPIO_WritePin(R0_GPIO_Port, R0_Pin, SET);
+	HAL_GPIO_WritePin(Y0_GPIO_Port, Y0_Pin, SET);
+	HAL_GPIO_WritePin(G0_GPIO_Port, G0_Pin, SET);
+	HAL_GPIO_WritePin(R1_GPIO_Port, R1_Pin, SET);
+	HAL_GPIO_WritePin(Y1_GPIO_Port, Y1_Pin, SET);
+	HAL_GPIO_WritePin(G1_GPIO_Port, G1_Pin, SET);
+}
