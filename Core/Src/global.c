@@ -9,9 +9,9 @@
 
 int status = auto_init; // BEGIN WITH AUTO MODE
 
-int time_red_green = 5000;
-int time_red_yellow = 2000;
-
+int time_red_green = 10000;
+int time_red_yellow = 5000;
+int counter_debug = 0;
 
 //int SETTING_STATE = -1; // BEGIN WITHOUT SETTING
 //int setting_mode = 0;  // FLAG SETTING

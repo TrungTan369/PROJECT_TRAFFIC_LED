@@ -93,7 +93,7 @@ void display7SEG(int num){
 		case 8:
 			HAL_GPIO_WritePin(A_GPIO_Port, A_Pin, RESET);
 			HAL_GPIO_WritePin(B_GPIO_Port, B_Pin, RESET);
-HAL_GPIO_WritePin(C_GPIO_Port, C_Pin, RESET);
+			HAL_GPIO_WritePin(C_GPIO_Port, C_Pin, RESET);
             HAL_GPIO_WritePin(D_GPIO_Port, D_Pin, SET);
 			break;
 		case 9:

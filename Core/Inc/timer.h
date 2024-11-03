@@ -8,10 +8,10 @@
 #ifndef INC_TIMER_H_
 #define INC_TIMER_H_
 
-#include "main.h"
-#include "button.h"
+#include "global.h"
+
 extern int counter[4];   // blink dot 1hz
-extern int flag[4];
+extern int timer_flag[4];
 
 void setTimer(int, int);
 void timer_run();

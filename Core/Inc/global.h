@@ -23,7 +23,9 @@ extern int time_red_green;
 extern int time_red_yellow;
 
 extern int auto_mode;
-extern int status;  // LINE 1
+extern int status;
+
+extern int counter_debug;
 //--- MANUAL MODE ------
 //#define manual_init 0
 //#define manual_red_green 1
