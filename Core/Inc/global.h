@@ -20,8 +20,8 @@
 #define auto_yellow_red 4
 
 ////-----MANUAL MODE -------
-//#define manual_red_green 5
-//#define manual_green_red 6
+#define manual_red_green 5
+#define manual_green_red 6
 
 
 //---- TIME LED --------
