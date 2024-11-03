@@ -23,7 +23,7 @@
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include "fsm_auto.h"
-
+#include "fsm_manual.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -95,38 +95,9 @@ int main(void)
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
-  HAL_GPIO_WritePin(R0_GPIO_Port, R0_Pin, SET);
-  HAL_GPIO_WritePin(Y0_GPIO_Port, Y0_Pin, SET);
-  HAL_GPIO_WritePin(G0_GPIO_Port, G0_Pin, SET);
-  HAL_GPIO_WritePin(R1_GPIO_Port, R1_Pin, SET);
-  HAL_GPIO_WritePin(Y1_GPIO_Port, Y1_Pin, SET);
-  HAL_GPIO_WritePin(G1_GPIO_Port, G1_Pin, SET);
   while (1)
   {
 	  fsm_auto_run();
-	  if(isButtonPress(0) == 1){
-		  status = auto_init;
-	  }
-//			HAL_GPIO_WritePin(Y0_GPIO_Port, Y0_Pin, SET); // yellow 0 off
-//			HAL_GPIO_WritePin(R1_GPIO_Port, R1_Pin, SET); // red 1 on
-//			HAL_GPIO_WritePin(R0_GPIO_Port, R0_Pin, RESET); // red0 on
-//			HAL_GPIO_WritePin(G1_GPIO_Port, G1_Pin, RESET); // green1 on
-//			HAL_Delay(5000);
-//
-//			HAL_GPIO_WritePin(G1_GPIO_Port, G1_Pin, SET); // green1 off
-//			HAL_GPIO_WritePin(Y1_GPIO_Port, Y1_Pin, RESET); // yellow1 on
-//			HAL_Delay(2000);
-//
-//			HAL_GPIO_WritePin(R0_GPIO_Port, R0_Pin, SET); // red 0 off
-//			HAL_GPIO_WritePin(Y1_GPIO_Port, Y1_Pin, SET); // yellow 1 off
-//			HAL_GPIO_WritePin(G0_GPIO_Port, G0_Pin, RESET); // green 0 on
-//			HAL_GPIO_WritePin(R1_GPIO_Port, R1_Pin, RESET); // red 1 on
-//			HAL_Delay(5000);
-//
-//			HAL_GPIO_WritePin(Y0_GPIO_Port, Y0_Pin, RESET); // yellow 0 on
-//			HAL_GPIO_WritePin(G0_GPIO_Port, G0_Pin, SET); // green 0 off
-//			HAL_Delay(2000);
-
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */

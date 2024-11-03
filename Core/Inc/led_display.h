@@ -15,6 +15,6 @@ extern int led_index;
 void Scan7SEG();
 void display7SEG(int);
 void updateClockBuffer(int, int);
-
+void Diable_Led();
 
 #endif /* INC_LED_DISPLAY_H_ */

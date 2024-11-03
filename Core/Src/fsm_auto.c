@@ -7,16 +7,7 @@
 
 #include "fsm_auto.h"
 
-int count0 = 0;
-int count1= 0;
-
 void fsm_auto_run(){
-	// ---------- CHECK MANUAL ---------------
-	//if(manual_mode == 1) return;
-	// ------ CHECK SETTING -------------
-	//if(setting_mode == 1) return;
-	// ---------- AUTO RUN ---------------------
-
 	switch (status) {   // LINE 1
 		case auto_init:
 			// ------- ALL LED OFF -------------
@@ -28,8 +19,8 @@ void fsm_auto_run(){
 			HAL_GPIO_WritePin(G1_GPIO_Port, G1_Pin, SET);
 
 			status = auto_red_green;
-			count0 = (time_red_green + time_red_yellow)/1000;  // 15s
-			count1 = time_red_green/1000; // 10s
+			count0 = (time_red_green + time_red_yellow)/1000;
+			count1 = time_red_green/1000;
 			setTimer(0, time_red_green);
 			setTimer(1, 1000); // count 1s
 			setTimer(2, 10);  // scan led
@@ -42,11 +33,14 @@ void fsm_auto_run(){
 			if(timer_flag[0] == 1){
 				status = auto_red_yellow;
 				setTimer(0, time_red_yellow);
-				// count0 = 5s
-				// count1 = 0s
+				count0 = 5;
 				count1 = time_red_yellow/1000;
-				// count0 = 5s
-				// count1 = 5s
+			}
+			//-----SWITCHING MANNUAL MODE -----------
+			if(isButtonPress(1) == 1){
+				status = manual_red_green;
+				Diable_Led();
+				return;
 			}
 			break;
 		case auto_red_yellow:
@@ -55,13 +49,8 @@ void fsm_auto_run(){
 
 			if(timer_flag[0] == 1){
 				status = auto_green_red;
-				// count0 = 0s
-				// count1 = 0s
 				count0 = (time_red_green)/1000;
 				count1 = (time_red_green + time_red_yellow)/1000;
-				// count0 = 10s
-				// count1 = 15s
-				//updateClockBuffer(count0, count1);
 				setTimer(0, time_red_green);
 			}
 			break;
@@ -74,11 +63,14 @@ void fsm_auto_run(){
 			if(timer_flag[0] == 1){
 				status = auto_yellow_red;
 				count0 = time_red_yellow/1000;
-				//count 0 = 0s
-				//count1 =  5s
+				count1 = 5;
 				setTimer(0, time_red_yellow);
-				//count 0 = 5s
-				//count1 =  5s
+			}
+			//-----SWITCHING MANNUAL MODE -----------
+			if(isButtonPress(1) == 1){
+				status = manual_green_red;
+				Diable_Led();
+				return;
 			}
 			break;
 		case auto_yellow_red:
@@ -86,17 +78,13 @@ void fsm_auto_run(){
 			HAL_GPIO_WritePin(G0_GPIO_Port, G0_Pin, SET); // green 0 off
 			if(timer_flag[0] == 1){
 				status = auto_red_green;
-				//count 0 = 0s
-				//count1 =  0s
 				count0 = (time_red_green + time_red_yellow)/1000;
 				count1 = time_red_green / 1000;
-				//count 0 = 15s
-				//count1 =  10s
-				//updateClockBuffer(count0, count1);
 				setTimer(0, time_red_green);
 			}
 			break;
-		default:
+		default: // ----- MANUAL MODE & SETTING MODE ---------
+			return;
 			break;
 	}
 	updateClockBuffer(count0, count1);
@@ -104,6 +92,7 @@ void fsm_auto_run(){
 		setTimer(2, 10);
 		Scan7SEG();
 	}
+
 	if(timer_flag[1] == 1){
 		setTimer(1, 1000);
 		count0 --; count1 --;

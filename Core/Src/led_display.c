@@ -8,30 +8,28 @@
 
 int led_buffer[4] = {0,0,0,0};
 int led_index = 0;
-void Scan7SEG(){
-
+void Diable_Led(){
 	HAL_GPIO_WritePin(EN0_GPIO_Port, EN0_Pin, RESET);
 	HAL_GPIO_WritePin(EN1_GPIO_Port, EN1_Pin, RESET);
 	HAL_GPIO_WritePin(EN2_GPIO_Port, EN2_Pin, RESET);
 	HAL_GPIO_WritePin(EN3_GPIO_Port, EN3_Pin, RESET);
+}
+void Scan7SEG(){
+	Diable_Led();
 	switch(led_index){
 		case 0:
-			//Display the first 7SEG with led_buffer[0]
 			HAL_GPIO_WritePin(EN0_GPIO_Port, EN0_Pin, SET);
 			display7SEG(led_buffer[0]);
 			break;
 		case 1:
-			//Display the second 7SEG with led_buffer[1]
 			HAL_GPIO_WritePin(EN1_GPIO_Port, EN1_Pin, SET);
 			display7SEG(led_buffer[1]);
 			break;
 		case 2:
-			//Display the third 7SEG with led_buffer[2]
 			HAL_GPIO_WritePin(EN2_GPIO_Port, EN2_Pin, SET);
 			display7SEG(led_buffer[2]);
 			break;
 		case 3:
-			//Display the forth 7SEG with led_buffer[3]
 			HAL_GPIO_WritePin(EN3_GPIO_Port, EN3_Pin, SET);
 			display7SEG(led_buffer[3]);
 			break;
