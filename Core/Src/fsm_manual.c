@@ -22,6 +22,7 @@ void fsm_manual(){
 				count0 = (time_red_green + time_red_yellow)/1000;
 				count1 = time_red_green / 1000;
 				setTimer(0, time_red_green);
+
 			}
 			break;
 		case manual_green_red:
@@ -37,16 +38,25 @@ void fsm_manual(){
 				count0 = time_red_green/1000;
 				count1 =   (time_red_green + time_red_yellow)/1000;
 				setTimer(0, time_red_green);
+
 			}
 			break;
 		default:
 			return;
-			break;
 	}
+
+	lcd_goto_XY(1, 0);
+	lcd_send_string("MODE: MANUAL    ");
+	lcd_goto_XY(0, 0);
+	lcd_send_string("WAIT LED TO GO  ");
+
+	// -------SWITCHING SETTING MODE ------------
 	if(isButtonPress(2) == 1){
+		setTimer(0, 100);
 		single_LED_off();
 		status = set_green;
 		time_red_green = 0;
 		time_red_yellow = 0;
+		//lcd_clear_display(); // ----CLEAR LCD ----
 	}
 }

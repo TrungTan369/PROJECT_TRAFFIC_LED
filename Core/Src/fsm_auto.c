@@ -17,7 +17,7 @@ void fsm_auto_run(){
 			count1 = time_red_green/1000;
 			setTimer(0, time_red_green);
 			setTimer(1, 1000); // count 1s
-			setTimer(2, 10);  // scan led
+			setTimer(2, 20);  // scan led
 			break;
 		case auto_red_green:
 			HAL_GPIO_WritePin(Y0_GPIO_Port, Y0_Pin, SET); // yellow 0 off
@@ -34,6 +34,7 @@ void fsm_auto_run(){
 			if(isButtonPress(1) == 1){
 				status = manual_red_green;
 				Diable_Led();
+				//lcd_clear_display();// ----CLEAR LCD ----
 				return;
 			}
 			break;
@@ -64,6 +65,7 @@ void fsm_auto_run(){
 			if(isButtonPress(1) == 1){
 				status = manual_green_red;
 				Diable_Led();
+				//lcd_clear_display();// ----CLEAR LCD ----
 				return;
 			}
 			break;
@@ -79,13 +81,16 @@ void fsm_auto_run(){
 			break;
 		default: // ----- MANUAL MODE & SETTING MODE ---------
 			return;
-			break;
 	}
+
+	lcd_goto_XY(1, 0);
+	lcd_send_string("MODE: AUTO      ");
+	lcd_goto_XY(0, 0);
+	lcd_send_string("PLEASE SLOW DOWN");
 
 	updateClockBuffer(count0, count1);
 	if(timer_flag[2] == 1){
-
-		setTimer(2, 10);
+		setTimer(2, 20);
 		Scan7SEG();
 	}
 	if(timer_flag[1] == 1){
@@ -99,6 +104,7 @@ void fsm_auto_run(){
 		single_LED_off();
 		status = set_green;
 		setTimer(0, 100);
+		//lcd_clear_display(); // ----CLEAR LCD ----
 		return;
 	}
 }

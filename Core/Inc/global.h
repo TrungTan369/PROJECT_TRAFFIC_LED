@@ -11,7 +11,7 @@
 #include "timer.h"
 #include "button.h"
 #include "led_display.h"
-
+#include "i2c-lcd.h"
 // --- AUTO MODE--------
 #define auto_init 0
 #define auto_red_green 1

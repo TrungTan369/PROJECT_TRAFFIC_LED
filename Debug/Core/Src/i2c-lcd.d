@@ -1,5 +1,4 @@
-Core/Src/fsm_setting.o: ../Core/Src/fsm_setting.c \
- ../Core/Inc/fsm_setting.h ../Core/Inc/global.h ../Core/Inc/main.h \
+Core/Src/i2c-lcd.o: ../Core/Src/i2c-lcd.c ../Core/Inc/i2c-lcd.h \
  ../Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal.h \
  ../Core/Inc/stm32f0xx_hal_conf.h \
  ../Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_rcc.h \
@@ -26,15 +25,9 @@ Core/Src/fsm_setting.o: ../Core/Src/fsm_setting.c \
  ../Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_pwr.h \
  ../Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_pwr_ex.h \
  ../Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_tim.h \
- ../Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_tim_ex.h \
- ../Core/Inc/timer.h ../Core/Inc/button.h ../Core/Inc/led_display.h \
- ../Core/Inc/i2c-lcd.h
+ ../Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_tim_ex.h
 
-../Core/Inc/fsm_setting.h:
-
-../Core/Inc/global.h:
-
-../Core/Inc/main.h:
+../Core/Inc/i2c-lcd.h:
 
 ../Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal.h:
 
@@ -89,11 +82,3 @@ Core/Src/fsm_setting.o: ../Core/Src/fsm_setting.c \
 ../Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_tim.h:
 
 ../Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_tim_ex.h:
-
-../Core/Inc/timer.h:
-
-../Core/Inc/button.h:
-
-../Core/Inc/led_display.h:
-
-../Core/Inc/i2c-lcd.h:

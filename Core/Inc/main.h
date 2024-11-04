@@ -74,10 +74,16 @@ void Error_Handler(void);
 #define Y0_GPIO_Port GPIOA
 #define BUTTON1_Pin GPIO_PIN_7
 #define BUTTON1_GPIO_Port GPIOA
+#define LED_DEBUG_Pin GPIO_PIN_0
+#define LED_DEBUG_GPIO_Port GPIOB
 #define D_Pin GPIO_PIN_1
 #define D_GPIO_Port GPIOB
 #define G0_Pin GPIO_PIN_8
 #define G0_GPIO_Port GPIOA
+#define SCL_Pin GPIO_PIN_9
+#define SCL_GPIO_Port GPIOA
+#define SDA_Pin GPIO_PIN_10
+#define SDA_GPIO_Port GPIOA
 #define EN3_Pin GPIO_PIN_11
 #define EN3_GPIO_Port GPIOA
 #define R0_Pin GPIO_PIN_12

@@ -10,6 +10,7 @@ C_SRCS += \
 ../Core/Src/fsm_manual.c \
 ../Core/Src/fsm_setting.c \
 ../Core/Src/global.c \
+../Core/Src/i2c-lcd.c \
 ../Core/Src/led_display.c \
 ../Core/Src/main.c \
 ../Core/Src/stm32f0xx_hal_msp.c \
@@ -25,6 +26,7 @@ OBJS += \
 ./Core/Src/fsm_manual.o \
 ./Core/Src/fsm_setting.o \
 ./Core/Src/global.o \
+./Core/Src/i2c-lcd.o \
 ./Core/Src/led_display.o \
 ./Core/Src/main.o \
 ./Core/Src/stm32f0xx_hal_msp.o \
@@ -40,6 +42,7 @@ C_DEPS += \
 ./Core/Src/fsm_manual.d \
 ./Core/Src/fsm_setting.d \
 ./Core/Src/global.d \
+./Core/Src/i2c-lcd.d \
 ./Core/Src/led_display.d \
 ./Core/Src/main.d \
 ./Core/Src/stm32f0xx_hal_msp.d \
