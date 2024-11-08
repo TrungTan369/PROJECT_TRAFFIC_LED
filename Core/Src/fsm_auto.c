@@ -78,6 +78,7 @@ void fsm_auto_run(){
 				count1 = time_red_green / 1000;
 				setTimer(0, time_red_green);
 			}
+
 			break;
 		default: // ----- MANUAL MODE & SETTING MODE ---------
 			return;
@@ -96,6 +97,16 @@ void fsm_auto_run(){
 	if(timer_flag[1] == 1){
 		setTimer(1, 1000);
 		count0 --; count1 --;
+	}
+	// -------SWITCHING SLOW MODE ---------------
+	if(isButtonPress(0)==1){
+		lcd_goto_XY(1, 0);
+		lcd_clear_display();
+		lcd_send_string("MODE: SLOW      ");
+		single_LED_off();
+		status = SLOW;
+		set_timer(0, 500);
+		return;
 	}
 	// -------SWITCHING SETTING MODE ------------
 	if(isButtonPress(2) == 1){

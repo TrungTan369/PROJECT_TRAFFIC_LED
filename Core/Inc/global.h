@@ -25,6 +25,8 @@
 //----SETTING MODE -------
 #define set_yellow 7
 #define set_green 8
+//---- SLOW MODE --------
+#define SLOW	25
 //---- TIME LED --------
 extern int time_red_green;
 extern int time_red_yellow;
