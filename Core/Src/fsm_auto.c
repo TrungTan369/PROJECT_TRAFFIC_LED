@@ -18,6 +18,10 @@ void fsm_auto_run(){
 			setTimer(0, time_red_green);
 			setTimer(1, 1000); // count 1s
 			setTimer(2, 20);  // scan led
+			lcd_goto_XY(1, 0);
+			lcd_send_string("MODE: AUTO");
+			lcd_goto_XY(0, 0);
+			lcd_send_string("PLEASE SLOW DOWN");
 			break;
 		case auto_red_green:
 			HAL_GPIO_WritePin(Y0_GPIO_Port, Y0_Pin, SET); // yellow 0 off
@@ -34,7 +38,11 @@ void fsm_auto_run(){
 			if(isButtonPress(1) == 1){
 				status = manual_red_green;
 				Diable_Led();
-				//lcd_clear_display();// ----CLEAR LCD ----
+				lcd_clear_display();// ----CLEAR LCD ----
+				lcd_goto_XY(1, 0);
+				lcd_send_string("MODE: MANUAL");
+				lcd_goto_XY(0, 0);
+				lcd_send_string("WAIT LED TO GO");
 				return;
 			}
 			break;
@@ -65,7 +73,11 @@ void fsm_auto_run(){
 			if(isButtonPress(1) == 1){
 				status = manual_green_red;
 				Diable_Led();
-				//lcd_clear_display();// ----CLEAR LCD ----
+				lcd_clear_display();// ----CLEAR LCD ----
+				lcd_goto_XY(1, 0);
+				lcd_send_string("MODE: MANUAL");
+				lcd_goto_XY(0, 0);
+				lcd_send_string("WAIT LED TO GO");
 				return;
 			}
 			break;
@@ -82,12 +94,6 @@ void fsm_auto_run(){
 		default: // ----- MANUAL MODE & SETTING MODE ---------
 			return;
 	}
-
-	lcd_goto_XY(1, 0);
-	lcd_send_string("MODE: AUTO      ");
-	lcd_goto_XY(0, 0);
-	lcd_send_string("PLEASE SLOW DOWN");
-
 	updateClockBuffer(count0, count1);
 	if(timer_flag[2] == 1){
 		setTimer(2, 20);
@@ -104,7 +110,10 @@ void fsm_auto_run(){
 		single_LED_off();
 		status = set_green;
 		setTimer(0, 100);
-		//lcd_clear_display(); // ----CLEAR LCD ----
-		return;
+		lcd_clear_display(); // ----CLEAR LCD ----
+		lcd_goto_XY(1, 0);
+		lcd_send_string("MODE: SETTING");
+		lcd_goto_XY(0, 0);
+		lcd_send_string("INCREASE TIMELED");
 	}
 }

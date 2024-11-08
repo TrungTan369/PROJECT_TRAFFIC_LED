@@ -17,7 +17,7 @@ void getKeyinput(){
 		//HAL_GPIO_TogglePin(R0_GPIO_Port, R0_Pin);
 		//counter_debug++;
 		buttonFlag[0] = 1;
-		setTimer(3, 200);  //Không đọc nút nhấn trong 200ms sau khi nhấn lần đầu tiên
+		setTimer(3, 300);  //Không đọc nút nhấn trong 200ms sau khi nhấn lần đầu tiên
 	}
 	// không đọc tiếp nút nhấn trong 200ms
 
@@ -27,14 +27,14 @@ void getKeyinput(){
 		//HAL_GPIO_TogglePin(R0_GPIO_Port, R0_Pin);
 		//counter_debug++;
 		buttonFlag[1] = 1;
-		setTimer(3, 200);
+		setTimer(3, 300);
 	}
 
 	// ----- PROCESS BUTTON 3 -----------
 	if((timer_flag[3] == 1) && (HAL_GPIO_ReadPin(BUTTON3_GPIO_Port, BUTTON3_Pin) == 0)){
 		//HAL_GPIO_TogglePin(R0_GPIO_Port, R0_Pin);
 		//counter_debug++;
-		setTimer(3, 200);
+		setTimer(3, 300);
 		buttonFlag[2] = 1;
 	}
 
