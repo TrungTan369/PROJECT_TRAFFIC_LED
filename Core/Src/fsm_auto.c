@@ -15,6 +15,7 @@ void fsm_auto_run(){
 			status = auto_red_green;
 			count0 = (time_red_green + time_red_yellow)/1000;
 			count1 = time_red_green/1000;
+			updateClockBuffer(count0, count1);
 			setTimer(0, time_red_green);
 			setTimer(1, 1000); // count 1s
 			setTimer(2, 20);  // scan led
@@ -33,11 +34,13 @@ void fsm_auto_run(){
 				setTimer(0, time_red_yellow);
 				count0 = time_red_yellow/1000;;
 				count1 = time_red_yellow/1000;
+				updateClockBuffer(count0, count1);
 			}
 			//-----SWITCHING MANNUAL MODE -----------
 			if(isButtonPress(1) == 1){
 				status = manual_red_green;
 				Diable_Led();
+
 				lcd_clear_display();// ----CLEAR LCD ----
 				lcd_goto_XY(1, 0);
 				lcd_send_string("MODE: MANUAL");
@@ -52,9 +55,10 @@ void fsm_auto_run(){
 
 			if(timer_flag[0] == 1){
 				status = auto_green_red;
+				setTimer(0, time_red_green);
 				count0 = (time_red_green)/1000;
 				count1 = (time_red_green + time_red_yellow)/1000;
-				setTimer(0, time_red_green);
+				updateClockBuffer(count0, count1);
 			}
 			break;
 		case auto_green_red:
@@ -65,14 +69,16 @@ void fsm_auto_run(){
 
 			if(timer_flag[0] == 1){
 				status = auto_yellow_red;
-				count0 = time_red_yellow/1000;
-				count1 = time_red_yellow/1000;;
 				setTimer(0, time_red_yellow);
+				count0 = time_red_yellow/1000;
+				count1 = time_red_yellow/1000;
+				updateClockBuffer(count0, count1);
 			}
 			//-----SWITCHING MANNUAL MODE -----------
 			if(isButtonPress(1) == 1){
 				status = manual_green_red;
 				Diable_Led();
+
 				lcd_clear_display();// ----CLEAR LCD ----
 				lcd_goto_XY(1, 0);
 				lcd_send_string("MODE: MANUAL");
@@ -86,15 +92,16 @@ void fsm_auto_run(){
 			HAL_GPIO_WritePin(G0_GPIO_Port, G0_Pin, SET); // green 0 off
 			if(timer_flag[0] == 1){
 				status = auto_red_green;
+				setTimer(0, time_red_green);
 				count0 = (time_red_green + time_red_yellow)/1000;
 				count1 = time_red_green / 1000;
-				setTimer(0, time_red_green);
+				updateClockBuffer(count0, count1);
 			}
 			break;
 		default: // ----- MANUAL MODE & SETTING MODE ---------
 			return;
 	}
-	updateClockBuffer(count0, count1);
+	//updateClockBuffer(count0, count1);
 	if(timer_flag[2] == 1){
 		setTimer(2, 20);
 		Scan7SEG();
@@ -102,6 +109,7 @@ void fsm_auto_run(){
 	if(timer_flag[1] == 1){
 		setTimer(1, 1000);
 		count0 --; count1 --;
+		updateClockBuffer(count0, count1);
 	}
 	// -------SWITCHING SETTING MODE ------------
 	if(isButtonPress(2) == 1){
@@ -110,6 +118,7 @@ void fsm_auto_run(){
 		single_LED_off();
 		status = set_green;
 		setTimer(0, 100);
+
 		lcd_clear_display(); // ----CLEAR LCD ----
 		lcd_goto_XY(1, 0);
 		lcd_send_string("MODE: SETTING");

@@ -49,8 +49,8 @@ void fsm_setting(){
 					i = 0;
 				}
 				else {
-					status = auto_init;
 					lcd_clear_display();
+					status = auto_init;
 					return;
 				}
 			}
