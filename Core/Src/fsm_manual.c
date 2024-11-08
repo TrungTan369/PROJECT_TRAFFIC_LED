@@ -22,7 +22,11 @@ void fsm_manual(){
 				count0 = (time_red_green + time_red_yellow)/1000;
 				count1 = time_red_green / 1000;
 				setTimer(0, time_red_green);
-
+				lcd_clear_display();
+				lcd_send_string("MODE: AUTO");
+				lcd_goto_XY(0, 0);
+				lcd_send_string("PLEASE SLOW DOWN");
+				return;
 			}
 			break;
 		case manual_green_red:
@@ -38,17 +42,16 @@ void fsm_manual(){
 				count0 = time_red_green/1000;
 				count1 =   (time_red_green + time_red_yellow)/1000;
 				setTimer(0, time_red_green);
-
+				lcd_clear_display();
+				lcd_send_string("MODE: AUTO");
+				lcd_goto_XY(0, 0);
+				lcd_send_string("PLEASE SLOW DOWN");
+				return;
 			}
 			break;
 		default:
 			return;
 	}
-
-	lcd_goto_XY(1, 0);
-	lcd_send_string("MODE: MANUAL    ");
-	lcd_goto_XY(0, 0);
-	lcd_send_string("WAIT LED TO GO  ");
 
 	// -------SWITCHING SETTING MODE ------------
 	if(isButtonPress(2) == 1){
@@ -57,6 +60,6 @@ void fsm_manual(){
 		status = set_green;
 		time_red_green = 0;
 		time_red_yellow = 0;
-		//lcd_clear_display(); // ----CLEAR LCD ----
+		lcd_clear_display(); // ----CLEAR LCD ----
 	}
 }

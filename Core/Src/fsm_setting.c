@@ -42,15 +42,16 @@ void fsm_setting(){
 				time_red_yellow += increment[i];
 			}
 			if(isButtonPress(2) == 1){
-				if((time_red_yellow + time_red_green) >= 100000  && time_red_green == 0 ){
+				if( ( (time_red_yellow + time_red_green) >= 100000)  && (time_red_green == 0) ){
 					HAL_GPIO_WritePin(Y0_GPIO_Port, Y0_Pin, SET);
 					HAL_GPIO_WritePin(Y1_GPIO_Port, Y1_Pin, SET);
 					status = set_green;
 					i = 0;
 				}
 				else {
+					lcd_clear_display();
 					status = auto_init;
-					//lcd_clear_display();
+					return;
 				}
 			}
 			updateClockBuffer(time_red_yellow/1000, increment[i]/1000);
@@ -58,10 +59,7 @@ void fsm_setting(){
 		default:
 			return;
 	}
-	lcd_goto_XY(1, 0);
-	lcd_send_string("MODE: SETTING   ");
-	lcd_goto_XY(0, 0);
-	lcd_send_string("SHE BLOCKED ME:(");
+
 	if(isButtonPress(1) == 1){
 		 ++i;
 		 if(i >=5) i = 0;
