@@ -17,6 +17,7 @@ void fsm_slow_run(){
 		break;
 	default:
 		return;
+
 	}
 	if(isButtonPress(0)==1){
 		lcd_clear_display();
