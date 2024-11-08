@@ -99,10 +99,10 @@ void fsm_auto_run(){
 			}
 
 			break;
-		default: // ----- MANUAL MODE & SETTING MODE ---------
+		default: // ----- MANUAL MODE & SETTING MODE & SLOW MODE---------
 			return;
 	}
-	//updateClockBuffer(count0, count1);
+
 	if(timer_flag[2] == 1){
 		setTimer(2, 20);
 		Scan7SEG();
@@ -114,12 +114,15 @@ void fsm_auto_run(){
 	}
 	// -------SWITCHING SLOW MODE ---------------
 	if(isButtonPress(0)==1){
-		lcd_goto_XY(1, 0);
-		lcd_clear_display();
-		lcd_send_string("MODE: SLOW      ");
-		single_LED_off();
+		single_LED_off();// ------ALL LED OFF----------
+		Diable_Led(); //--- Disable led 7 segment ------
 		status = SLOW;
-		set_timer(0, 500);
+		setTimer(0, 500);
+		lcd_clear_display(); // ----CLEAR LCD ----
+		lcd_goto_XY(1, 0);
+		lcd_send_string("MODE: SLOW");
+		lcd_goto_XY(0, 0);
+		lcd_send_string("FREE-STAY ALERT");
 		return;
 	}
 	// -------SWITCHING SETTING MODE ------------

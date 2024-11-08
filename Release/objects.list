@@ -2,6 +2,7 @@
 "./Core/Src/fsm_auto.o"
 "./Core/Src/fsm_manual.o"
 "./Core/Src/fsm_setting.o"
+"./Core/Src/fsm_slow.o"
 "./Core/Src/global.o"
 "./Core/Src/i2c-lcd.o"
 "./Core/Src/led_display.o"

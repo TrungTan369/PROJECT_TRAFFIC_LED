@@ -25,6 +25,7 @@
 #include "fsm_auto.h"
 #include "fsm_manual.h"
 #include "fsm_setting.h"
+#include "fsm_slow.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -108,6 +109,7 @@ int main(void)
 	  fsm_auto_run();
 	  fsm_manual();
 	  fsm_setting();
+	  fsm_slow_run();
 	if(timer_flag[4] == 1){  // debug
 		setTimer(4, 1000);
 		HAL_GPIO_TogglePin(LED_DEBUG_GPIO_Port, LED_DEBUG_Pin);
