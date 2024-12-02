@@ -22,10 +22,7 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-#include "fsm_auto.h"
-#include "fsm_manual.h"
-#include "fsm_setting.h"
-#include "fsm_slow.h"
+#include "global.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -62,6 +59,8 @@ static void MX_I2C1_Init(void);
 static void MX_USART1_UART_Init(void);
 /* USER CODE BEGIN PFP */
 void HAL_UART_RxCpltCallback(UART_HandleTypeDef *);
+void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *);
+void led_debug();
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
@@ -75,6 +74,7 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *);
   */
 int main(void)
 {
+
   /* USER CODE BEGIN 1 */
 
   /* USER CODE END 1 */
@@ -110,17 +110,13 @@ int main(void)
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
-  setTimer(4, 1000); // debug
+  SCH_Add_Task(fsm_auto_run, 10, 10);
+  SCH_Add_Task(getKeyinput, 10, 20);
+  SCH_Add_Task(Scan7SEG, 10, 20);
+  SCH_Add_Task(count_1_second, 10, 1000);
   while (1)
   {
-	  fsm_auto_run();
-	  fsm_manual();
-	  fsm_setting();
-	  fsm_slow_run();
-//	if(timer_flag[4] == 1){  // debug
-//		setTimer(4, 1000);
-//		HAL_GPIO_TogglePin(LED_DEBUG_GPIO_Port, LED_DEBUG_Pin);
-//	}
+	  SCH_Dispatch_Task();
 	  if(flag == 1){
 		  if(data == '1'){
 			  buttonFlag[0] = 1;
@@ -164,6 +160,7 @@ void SystemClock_Config(void)
   {
     Error_Handler();
   }
+
   /** Initializes the CPU, AHB and APB buses clocks
   */
   RCC_ClkInitStruct.ClockType = RCC_CLOCKTYPE_HCLK|RCC_CLOCKTYPE_SYSCLK
@@ -213,12 +210,14 @@ static void MX_I2C1_Init(void)
   {
     Error_Handler();
   }
+
   /** Configure Analogue filter
   */
   if (HAL_I2CEx_ConfigAnalogFilter(&hi2c1, I2C_ANALOGFILTER_ENABLE) != HAL_OK)
   {
     Error_Handler();
   }
+
   /** Configure Digital filter
   */
   if (HAL_I2CEx_ConfigDigitalFilter(&hi2c1, 0) != HAL_OK)
@@ -319,6 +318,8 @@ static void MX_USART1_UART_Init(void)
 static void MX_GPIO_Init(void)
 {
   GPIO_InitTypeDef GPIO_InitStruct = {0};
+/* USER CODE BEGIN MX_GPIO_Init_1 */
+/* USER CODE END MX_GPIO_Init_1 */
 
   /* GPIO Ports Clock Enable */
   __HAL_RCC_GPIOF_CLK_ENABLE();
@@ -367,6 +368,8 @@ static void MX_GPIO_Init(void)
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
 
+/* USER CODE BEGIN MX_GPIO_Init_2 */
+/* USER CODE END MX_GPIO_Init_2 */
 }
 
 /* USER CODE BEGIN 4 */
@@ -374,6 +377,13 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart){
 	HAL_UART_Receive_IT(&huart1, &data, 1);
 	flag = 1;
 }
+void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef * htim2){
+	SCH_Update();
+}
+void led_debug(){
+	HAL_GPIO_TogglePin(LED_DEBUG_GPIO_Port, LED_DEBUG_Pin);
+}
+
 /* USER CODE END 4 */
 
 /**
@@ -407,5 +417,3 @@ void assert_failed(uint8_t *file, uint32_t line)
   /* USER CODE END 6 */
 }
 #endif /* USE_FULL_ASSERT */
-
-/************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/

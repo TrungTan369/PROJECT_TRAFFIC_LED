@@ -8,14 +8,14 @@
 
 int led_buffer[4] = {0,0,0,0};
 int led_index = 0;
-void Diable_Led(){
+void Diable_7SEG(){
 	HAL_GPIO_WritePin(EN0_GPIO_Port, EN0_Pin, RESET);
 	HAL_GPIO_WritePin(EN1_GPIO_Port, EN1_Pin, RESET);
 	HAL_GPIO_WritePin(EN2_GPIO_Port, EN2_Pin, RESET);
 	HAL_GPIO_WritePin(EN3_GPIO_Port, EN3_Pin, RESET);
 }
 void Scan7SEG(){
-	Diable_Led();
+	Diable_7SEG();
 	switch(led_index){
 		case 0:
 			HAL_GPIO_WritePin(EN0_GPIO_Port, EN0_Pin, SET);

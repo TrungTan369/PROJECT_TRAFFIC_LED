@@ -9,64 +9,61 @@
 
 int increment[5] = {1000,2000,5000,10000,20000};
 int i = 0;
-
+int temp =0 ;
 void fsm_setting(){
 	switch (status) {
 		case set_green:
-			if(timer_flag[0] == 1){
-				setTimer(0, 100);
-				HAL_GPIO_TogglePin(G0_GPIO_Port, G0_Pin);
-				HAL_GPIO_TogglePin(G1_GPIO_Port, G1_Pin);
-			}
 			if(isButtonPress(0) == 1){  // TIME INCREASE
 				time_red_green += increment[i];
+				temp = time_red_green;
 				if(time_red_green > 98000){
 					time_red_green = 0;
 				}
+				updateClockBuffer(time_red_green/1000, increment[i]/1000);
 			}
 			if(isButtonPress(2) == 1){
+				i = 0;
+				updateClockBuffer(time_red_yellow/1000, increment[i]/1000);
+				temp = time_red_yellow;
 				status = set_yellow;
 				HAL_GPIO_WritePin(G0_GPIO_Port, G0_Pin, SET);
 				HAL_GPIO_WritePin(G1_GPIO_Port, G1_Pin, SET);
+				HAL_GPIO_WritePin(Y0_GPIO_Port, Y0_Pin, RESET);
+				HAL_GPIO_WritePin(Y1_GPIO_Port, Y1_Pin, RESET);
 				i = 0;
 			}
-			updateClockBuffer(time_red_green/1000, increment[i]/1000);
 			break;
 		case set_yellow:
-			if(timer_flag[0] == 1){
-				setTimer(0, 100);
-				HAL_GPIO_TogglePin(Y0_GPIO_Port, Y0_Pin);
-				HAL_GPIO_TogglePin(Y1_GPIO_Port, Y1_Pin);
-			}
 			if(isButtonPress(0) == 1){
 				time_red_yellow += increment[i];
+				temp = time_red_yellow;
+				updateClockBuffer(time_red_yellow/1000, increment[i]/1000);
 			}
 			if(isButtonPress(2) == 1){
 				if( ( (time_red_yellow + time_red_green) >= 100000)  && (time_red_green == 0) ){
 					HAL_GPIO_WritePin(Y0_GPIO_Port, Y0_Pin, SET);
 					HAL_GPIO_WritePin(Y1_GPIO_Port, Y1_Pin, SET);
+					HAL_GPIO_WritePin(G0_GPIO_Port, G0_Pin, RESET);
+					HAL_GPIO_WritePin(G1_GPIO_Port, G1_Pin, RESET);
 					status = set_green;
 					i = 0;
 				}
 				else {
-					lcd_clear_display();
+					i = 0;
 					status = auto_init;
+					SCH_Delete_Task(fsm_setting);
+					SCH_Add_Task(fsm_auto_run, 10, 10);
+					SCH_Add_Task(count_1_second, 1010, 1000);
 					return;
 				}
 			}
-			updateClockBuffer(time_red_yellow/1000, increment[i]/1000);
 			break;
 		default:
 			return;
 	}
-
 	if(isButtonPress(1) == 1){
 		 ++i;
-		 if(i >=5) i = 0;
+		 if(i >= 5) i = 0;
+		 updateClockBuffer(temp/1000, increment[i]/1000);
 	}
-	if(timer_flag[2] == 1){
-		setTimer(2, 20);
-		Scan7SEG();
-	}
-
 }

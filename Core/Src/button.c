@@ -8,34 +8,24 @@
 
 
 int buttonFlag[3] = {0,0,0};
+uint8_t count = 0;
 
 void getKeyinput(){
+	if (count > 0 ) count--;
 	//-----PROCESS BUTTON 1------------
-
-	// BEGIN: timer_flag[1] == 1
-	if((timer_flag[3] == 1) && (HAL_GPIO_ReadPin(BUTTON1_GPIO_Port, BUTTON1_Pin) == 0)){
-		//HAL_GPIO_TogglePin(R0_GPIO_Port, R0_Pin);
-		//counter_debug++;
+	if((count == 0) && (HAL_GPIO_ReadPin(BUTTON1_GPIO_Port, BUTTON1_Pin) == 0)){
 		buttonFlag[0] = 1;
-		setTimer(3, 300);  //Không đọc nút nhấn trong 200ms sau khi nhấn lần đầu tiên
+		count = 10;
 	}
-	// không đọc tiếp nút nhấn trong 200ms
-
 	// ----PROCESS BUTTON 2-----------
-
-	if((timer_flag[3] == 1) && (HAL_GPIO_ReadPin(BUTTON2_GPIO_Port, BUTTON2_Pin) == 0)){
-		//HAL_GPIO_TogglePin(R0_GPIO_Port, R0_Pin);
-		//counter_debug++;
+	if((count == 0) && (HAL_GPIO_ReadPin(BUTTON2_GPIO_Port, BUTTON2_Pin) == 0)){
 		buttonFlag[1] = 1;
-		setTimer(3, 300);
+		count = 10;
 	}
-
 	// ----- PROCESS BUTTON 3 -----------
-	if((timer_flag[3] == 1) && (HAL_GPIO_ReadPin(BUTTON3_GPIO_Port, BUTTON3_Pin) == 0)){
-		//HAL_GPIO_TogglePin(R0_GPIO_Port, R0_Pin);
-		//counter_debug++;
-		setTimer(3, 300);
+	if((count == 0) && (HAL_GPIO_ReadPin(BUTTON3_GPIO_Port, BUTTON3_Pin) == 0)){
 		buttonFlag[2] = 1;
+		count = 10;
 	}
 
 }

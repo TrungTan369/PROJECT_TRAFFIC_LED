@@ -8,10 +8,15 @@
 #define INC_GLOBAL_H_
 
 #include "main.h"
-#include "timer.h"
+#include "scheduler.h"
 #include "button.h"
 #include "led_display.h"
 #include "i2c-lcd.h"
+#include "fsm_auto.h"
+#include "fsm_manual.h"
+#include "fsm_setting.h"
+#include "fsm_slow.h"
+
 // --- AUTO MODE--------
 #define auto_init 0
 #define auto_red_green 1
@@ -32,8 +37,5 @@ extern int time_red_green;
 extern int time_red_yellow;
 extern int count0, count1;
 extern int status;
-
-extern int counter_debug;
-
 
 #endif /* INC_GLOBAL_H_ */

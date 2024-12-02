@@ -1,1 +1,1 @@
-fsm_slow.c:9:6:fsm_slow_run	16	static
+../Core/Src/fsm_slow.c:9:6:fsm_slow_run	8	static

@@ -1,0 +1,6 @@
+../Core/Src/fsm_auto.c:163:6:count_1_second	3
+../Core/Src/fsm_auto.c:123:6:fsm_switch_state_auto_red_green	1
+../Core/Src/fsm_auto.c:135:6:fsm_switch_state_auto_red_yellow	1
+../Core/Src/fsm_auto.c:144:6:fsm_switch_state_auto_green_red	1
+../Core/Src/fsm_auto.c:155:6:fsm_switch_state_auto_yellow_red	1
+../Core/Src/fsm_auto.c:4:6:fsm_auto_run	9
