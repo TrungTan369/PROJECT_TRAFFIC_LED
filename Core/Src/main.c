@@ -116,9 +116,6 @@ int main(void)
   SCH_Add_Task(count_1_second, 10, 1000);
   while (1)
   {
-<<<<<<< HEAD
-	  // main
-=======
 	  SCH_Dispatch_Task();
 	  if(flag == 1){
 		  if(data == '1'){
@@ -135,7 +132,6 @@ int main(void)
 		  }
 		  flag = 0;
 	  }
->>>>>>> develop
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
